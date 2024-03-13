@@ -2,7 +2,7 @@
   <nav class="aside-nav">
     <ul class="aside-nav__menu">
       <li class="genres">
-        <a href="#genres" class="social-icons">
+        <a href="/genres" class="social-icons">
           <svg width="36" height="36" viewBox="0 0 36 36"
                fill="#a1a1a1"
                xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,7 @@
       </li>
 
       <li class="charts">
-        <a href="#charts" class="social-icons">
+        <a href="/charts" class="social-icons">
           <svg width="40" height="40" viewBox="0 0 40 40"
                fill="#a1a1a1"
                xmlns="http://www.w3.org/2000/svg">
