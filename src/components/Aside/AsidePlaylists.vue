@@ -4,8 +4,8 @@
     <div>
 
       <div class="aside-library__title">
-        <a href="#genres" class="social-icons"></a>
-        <img src="/favorites.png" alt="sdsad">
+        <a href="/genres" class="social-icons"></a>
+        <img src="@/assets/playlist.jpg" alt="">
         <div id="title">Моя библиотека</div>
       </div>
 

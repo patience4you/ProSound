@@ -1,30 +1,42 @@
-<script>
-  import MyHeader from "@/components/Header/MyHeader.vue";
-  import MyContent from "@/components/Content/MyContent.vue";
-  import MyFooter from "@/components/Footer/MyFooter.vue";
-  import AsideNav from "@/components/Aside/AsideNav.vue";
-  import AsidePlaylists from "@/components/Aside/AsidePlaylists.vue";
-
-  export default {
-    components: {
-      MyHeader,
-      AsideNav,
-      AsidePlaylists,
-      MyContent,
-      MyFooter
-    }
-  }
-</script>
-
 <template>
   <div class="container">
     <my-header/>
-    <aside-nav/>
+    <aside-nav @contentChange="updateContent"/>
     <aside-playlists/>
-    <my-content/>
+    <my-content :currentContent="currentContent"/>
     <my-footer/>
   </div>
 </template>
+
+<script>
+import MyHeader from "@/components/Header/MyHeader.vue";
+import MyContent from "@/components/Content/MyContent.vue";
+import MyFooter from "@/components/Footer/MyFooter.vue";
+import AsideNav from "@/components/Aside/AsideNav.vue";
+import AsidePlaylists from "@/components/Aside/AsidePlaylists.vue";
+
+export default {
+  data() {
+    return {
+      currentContent: 'genres'
+    }
+  },
+
+  components: {
+    MyHeader,
+    AsideNav,
+    AsidePlaylists,
+    MyContent,
+    MyFooter
+  },
+
+  methods: {
+    updateContent(content) {
+      this.currentContent = content;
+    }
+  }
+}
+</script>
 
 <style>
 

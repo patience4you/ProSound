@@ -1,15 +1,34 @@
-<script>
-  export default {
-
-  }
-</script>
 
 <template>
+
   <div class="content">
-    <div class="hover-picture">
+
+    <div v-show="currentContent === 'genres'" class="content__genres">
+      123
     </div>
+
+    <div v-show="currentContent === 'charts'" class="content__charts">
+      456
+    </div>
+
+    <div v-show="currentContent === 'favorites'" class="content__favorites">
+      789
+    </div>
+
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    currentContent: {
+      type: String,
+      required: true
+    }
+  }
+
+}
+</script>
 
 <style scoped>
 
@@ -25,11 +44,5 @@
   border-radius: 10px;
 }
 
-.content {
-
-  //background-image: url("https://i.pinimg.com/736x/05/40/58/054058a4627a02a9e743f9a7cf4f472f.jpg");
-  //background-size: cover;
-
-}
 
 </style>
