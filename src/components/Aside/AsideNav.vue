@@ -2,7 +2,7 @@
   <nav class="aside-nav">
     <ul class="aside-nav__menu">
       <li class="genres">
-        <a href="/genres" class="social-icons">
+        <a href="/genres" @click.prevent="showContent('genres')" class="social-icons">
           <svg width="36" height="36" viewBox="0 0 36 36"
                fill="#a1a1a1"
                xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,7 @@
       </li>
 
       <li class="charts">
-        <a href="#charts" class="social-icons">
+        <a href="/charts" @click.prevent="showContent('charts')" class="social-icons">
           <svg width="40" height="40" viewBox="0 0 40 40"
                fill="#a1a1a1"
                xmlns="http://www.w3.org/2000/svg">
@@ -39,13 +39,12 @@
             <path
                 d="M38.3333 36.6267H8.33333C7.00725 36.6267 5.73548 36.0999 4.7978 35.1622C3.86012 34.2245 3.33333 32.9527 3.33333 31.6267V1.66667C3.33333 1.22464 3.15774 0.800716 2.84518 0.488155C2.53262 0.175595 2.10869 0 1.66667 0C1.22464 0 0.800716 0.175595 0.488155 0.488155C0.175595 0.800716 0 1.22464 0 1.66667L0 31.6267C0.00264643 33.836 0.88147 35.9541 2.4437 37.5163C4.00593 39.0785 6.12401 39.9574 8.33333 39.96H38.3333C38.7754 39.96 39.1993 39.7844 39.5118 39.4718C39.8244 39.1593 40 38.7354 40 38.2933C40 37.8513 39.8244 37.4274 39.5118 37.1148C39.1993 36.8023 38.7754 36.6267 38.3333 36.6267Z" />
           </svg>
-
           <span>Чарты</span>
         </a>
       </li>
 
       <li class="favorites">
-        <a href="#favorites" class="social-icons">
+        <a href="/favorites" @click.prevent="showContent('favorites')" class="social-icons">
           <svg width="38" height="34" viewbox="0 0 38 34"
                fill="#a1a1a1"
                xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +61,18 @@
 
 <script>
   export default {
+    props: {
+      currentContent: {
+        type: String,
+        required: true
+      }
+    },
 
+    methods: {
+      showContent(content) {
+        this.$emit('contentChange', content)
+      },
+    }
   }
 </script>
 
