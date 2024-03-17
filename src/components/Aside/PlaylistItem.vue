@@ -1,6 +1,6 @@
 <template>
   <div class="aside-library__playlists">
-    <a href="">
+    <a>
       <div class="playlist" v-for="playlist in playlists">
         <div class="img">
           <img :src="playlist.image" alt="Picture">
