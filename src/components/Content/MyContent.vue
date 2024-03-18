@@ -59,10 +59,8 @@ export default {
         {id: 15, title: 'Netflix'},
         {id: 15, title: 'Караоке'},
       ],
-
     }
   },
-
 }
 </script>
 

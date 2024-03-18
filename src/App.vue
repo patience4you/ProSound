@@ -14,20 +14,24 @@ import MyContent from "@/components/Content/MyContent.vue";
 import MyFooter from "@/components/Footer/MyFooter.vue";
 import AsideNav from "@/components/Aside/AsideNav.vue";
 import AsidePlaylists from "@/components/Aside/AsidePlaylists.vue";
+import MyDialog from "@/components/UI/MyDialog.vue";
+import PlaylistItem from "@/components/Aside/PlaylistItem.vue";
 
 export default {
-  data() {
-    return {
-      currentContent: 'genres'
-    }
-  },
-
   components: {
+    PlaylistItem,
+    MyDialog,
     MyHeader,
     AsideNav,
     AsidePlaylists,
     MyContent,
     MyFooter
+  },
+
+  data() {
+    return {
+      currentContent: 'genres'
+    }
   },
 
   methods: {
