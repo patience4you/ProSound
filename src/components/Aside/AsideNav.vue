@@ -108,10 +108,6 @@
 
       list-style-type: none;
     }
-
-    .user-actions__login-button {
-      width: 50px;
-    }
   }
 
   @media screen and (min-width: 1000px) {

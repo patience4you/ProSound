@@ -17,14 +17,19 @@
           <input type="text"  placeholder="Поиск...">
         </div>
 
-        <button class="aside-library__add-playlist" @click.prevent="createPlaylist" title="Создать плейлист">
+        <button class="aside-library__add-playlist" @click="showDialog" title="Создать плейлист">
           <svg xmlns="http://www.w3.org/2000/svg" fill="#a1a1a1" id="Outline" width="25" height="25"><path d="M23,11H13V1a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1V11H1a1,1,0,0,0-1,1H0a1,1,0,0,0,1,1H11V23a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V13H23a1,1,0,0,0,1-1h0A1,1,0,0,0,23,11Z"/></svg>
         </button>
 
       </div>
 
-      <playlist-item :playlists="playlists"/>
-
+      <playlist-item v-bind:playlists="playlists"/>
+      <my-dialog v-model:show="dialogVisible" class="playlist-dialog">
+        <playlist-form
+          @create="createPlaylist"
+          class="playlist-form"
+        />
+      </my-dialog>
     </div>
 
   </div>
@@ -33,34 +38,39 @@
 
 <script>
   import PlaylistItem from "@/components/Aside/PlaylistItem.vue";
+  import MyDialog from "@/components/UI/MyDialog.vue";
+  import PlaylistForm from "@/components/Aside/PlaylistForm.vue";
 
   export default {
     components: {
-      PlaylistItem
+      PlaylistForm,
+      PlaylistItem,
+      MyDialog
     },
+
 
     data() {
       return {
+        dialogVisible: false,
         playlists: [
           {id: 1, title: 'overdose', author: 'patience', image: require('@/assets/playlist.jpg')},
           {id: 2, title: 'dreams', author: 'patience', image: require('@/assets/playlist.jpg')},
           {id: 3, title: 'love', author: 'patience', image: require('@/assets/playlist.jpg')}
         ],
-        playlistCounter: 3
+        playlistCounter: 3,
       }
     },
 
     methods: {
-      createPlaylist (event) {
-        this.playlistCounter++;
-        const newPlaylist = {
-          id: Date.now(),
-          title: `Новый плейлист № ${this.playlistCounter}`,
-          author: "patience",
-          image: require('@/assets/playlist.jpg')
-        };
-        this.playlists.push(newPlaylist);
-      }
+      showDialog () {
+        this.dialogVisible = true;
+      },
+
+      createPlaylist (playlist) {
+        this.playlists.push(playlist)
+
+        this.dialogVisible = false
+      },
     }
   }
 </script>
