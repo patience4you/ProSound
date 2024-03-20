@@ -17,18 +17,24 @@
           <input type="text"  placeholder="Поиск...">
         </div>
 
-        <button class="aside-library__add-playlist" @click="showDialog" title="Создать плейлист">
+        <button
+            class="aside-library__add-playlist"
+            @click="showDialog"
+            title="Создать плейлист"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" fill="#a1a1a1" id="Outline" width="25" height="25"><path d="M23,11H13V1a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1V11H1a1,1,0,0,0-1,1H0a1,1,0,0,0,1,1H11V23a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V13H23a1,1,0,0,0,1-1h0A1,1,0,0,0,23,11Z"/></svg>
         </button>
 
       </div>
 
       <playlist-item v-bind:playlists="playlists"/>
-      <my-dialog v-model:show="dialogVisible" class="playlist-dialog">
+      <my-dialog v-model:show="dialogVisible">
         <playlist-form
+          :playlist-counter="playlistCounter"
           @create="createPlaylist"
-          class="playlist-form"
+
         />
+
       </my-dialog>
     </div>
 
@@ -40,14 +46,28 @@
   import PlaylistItem from "@/components/Aside/PlaylistItem.vue";
   import MyDialog from "@/components/UI/MyDialog.vue";
   import PlaylistForm from "@/components/Aside/PlaylistForm.vue";
+  import LoginForm from "@/components/Header/LoginForm.vue";
+  import MyHeader from "@/components/Header/MyHeader.vue";
 
   export default {
     components: {
+      LoginForm,
       PlaylistForm,
       PlaylistItem,
-      MyDialog
+      MyDialog,
+      MyHeader,
     },
 
+    props: {
+      loggedIn: {
+        type: Boolean,
+        required: true
+      },
+      loggedOut: {
+        type: Boolean,
+        required: true
+      }
+    },
 
     data() {
       return {
@@ -56,8 +76,13 @@
           {id: 1, title: 'overdose', author: 'patience', image: require('@/assets/playlist.jpg')},
           {id: 2, title: 'dreams', author: 'patience', image: require('@/assets/playlist.jpg')},
           {id: 3, title: 'love', author: 'patience', image: require('@/assets/playlist.jpg')}
-        ],
-        playlistCounter: 3,
+        ]
+      }
+    },
+
+    computed: {
+      playlistCounter() {
+        return (this.playlists.length + 1);
       }
     },
 
@@ -68,8 +93,8 @@
 
       createPlaylist (playlist) {
         this.playlists.push(playlist)
-
         this.dialogVisible = false
+        this.playlistCounter++;
       },
     }
   }

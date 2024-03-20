@@ -2,7 +2,7 @@
   <div class="container">
     <my-header/>
     <aside-nav @contentChange="updateContent"/>
-    <aside-playlists/>
+    <aside-playlists :loggedIn="loggedIn" :loggedOut="loggedOut" @update-logged-state="updateLoggedState"/>
     <my-content :currentContent="currentContent"/>
     <my-footer/>
   </div>
@@ -28,8 +28,10 @@ export default {
     MyFooter
   },
 
+
   data() {
     return {
+
       currentContent: 'genres'
     }
   },
@@ -37,7 +39,12 @@ export default {
   methods: {
     updateContent(content) {
       this.currentContent = content;
-    }
+    },
+
+    updateLoggedState(loggedIn, loggedOut) {
+      this.loggedIn = loggedIn;
+      this.loggedOut = loggedOut;
+    },
   }
 }
 </script>

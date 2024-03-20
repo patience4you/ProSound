@@ -5,7 +5,7 @@
         <div class="img">
           <img :src="playlist.image" alt="Picture">
         </div>
-        <div>
+        <div class="playlist__data">
           <div class="title">{{playlist.title}}</div>
           <div class="author">{{playlist.author}}</div>
         </div>
@@ -37,6 +37,10 @@ export default {
 
   .img {
     height: 55px;
+  }
+
+  .playlist__data {
+    overflow: hidden;
   }
 
   .playlist .author {

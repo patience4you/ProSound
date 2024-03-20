@@ -1,4 +1,3 @@
-
 <template>
   <div class="dialog" v-if="show === true" @click.stop="closeDialog">
     <div @click.stop class="dialog__content">
@@ -27,24 +26,25 @@
 </script>
 
 <style scoped>
+  .dialog {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
 
-.dialog {
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    display: flex;
 
-  background: rgba(0, 0, 0, 0.6);
-  position: fixed;
-  display: flex;
+    backdrop-filter: blur(8px);
+  }
 
-  backdrop-filter: blur(3px);
-}
+  .dialog__content {
 
-.dialog__content {
-  margin: auto;
-  background: #ffce5d;
-}
+    margin: auto;
+    background-color: #262626;
+    //border: solid 2px rgba(255, 255, 255, 0.35);
 
-
+    border-radius: 15px;
+  }
 </style>

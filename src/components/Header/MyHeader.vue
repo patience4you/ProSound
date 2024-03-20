@@ -1,14 +1,8 @@
-<script>
-  export default {
-
-  }
-</script>
-
 <template>
   <header class="header">
 
     <div class="logo">
-      <a href="main">
+      <a href=" ">
         <img src="../../assets/logo.svg" alt="">
       </a>
     </div>
@@ -17,10 +11,10 @@
       <input type="text"  placeholder="Что слушаем?">
     </div>
 
-    <div class="user-actions">
+    <div v-if="loggedOut" class="user-actions">
 
       <div class="user-actions__premium">
-        <a href="/premium.html">Премиум</a>
+        <a href=" ">Премиум</a>
       </div>
 
       <div>
@@ -31,16 +25,81 @@
       </div>
 
       <div class="user-actions__registration">
-        <a href="/signIn.html">Зарегистрироваться</a>
+        <a href=" ">Зарегистрироваться</a>
       </div>
 
-      <button class="user-actions__login-button" href="/login.html">
+      <button
+          class="user-actions__login-button"
+          href="/login.html"
+          @click.prevent="showDialog"
+      >
         Войти
       </button>
-
     </div>
+
+    <div v-if="loggedIn" class="logged-in__actions">
+      <div>Привет, <strong :style="{color: 'white'}">{{userData.email}}</strong> </div>
+      <button
+          class="user-actions__login-button"
+          @click.prevent="logoutAccount"
+      >
+        Выйти
+      </button>
+    </div>
+
+    <my-dialog v-model:show="loginDialogVisible">
+      <login-form
+          @login="loginAccount"
+      />
+    </my-dialog>
+
   </header>
 </template>
+
+<script>
+import MyDialog from "@/components/UI/MyDialog.vue";
+import LoginForm from "@/components/Header/LoginForm.vue";
+
+export default {
+
+  components: {
+    LoginForm,
+    MyDialog,
+  },
+
+  data() {
+    return {
+      loggedOut: true,
+      loggedIn: false,
+      loginDialogVisible: false,
+      userData: null,
+    }
+  },
+
+  methods: {
+    showDialog () {
+      this.loginDialogVisible = true;
+    },
+
+    logoutAccount(logout) {
+      this.loggedOut = true;
+      this.loggedIn = false;
+      this.userData = null;
+      this.$emit('loggedOutChanged', true);
+    },
+
+    loginAccount(login) {
+      this.loginDialogVisible = false;
+      this.loggedIn = true;
+      this.loggedOut = false;
+      this.userData = login;
+      this.$emit('loggedInChanged', true);
+    },
+  }
+
+}
+</script>
+
 
 <style scoped>
 
@@ -121,6 +180,14 @@
     cursor: pointer;
 
     transition: background-color 0.3s;
+  }
+
+  .logged-in__actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px
   }
 
   .user-actions__login-button:hover {

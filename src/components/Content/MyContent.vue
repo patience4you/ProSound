@@ -2,16 +2,14 @@
 <template>
 
   <div class="content">
-
     <div v-show="currentContent === 'genres'">
       <div class="title">Жанры</div>
 
         <div class="genres__content">
           <a href="" v-for="genre in genres">
-            <div class="genre__title">{{genre.title}}</div>
+            <img @click="" class="genre__image" :src="genre.image" alt="Обложка жанра">
           </a>
         </div>
-
     </div>
 
     <div v-show="currentContent === 'charts'">
@@ -39,25 +37,23 @@ export default {
   data() {
     return {
       genres: [
-        {id: 1, title: 'Хип-хоп'},
-        {id: 2, title: 'Поп'},
-        {id: 3, title: 'Рок'},
-        {id: 4, title: 'Инди'},
-        {id: 5, title: 'R&B'},
-        {id: 6, title: 'K-Pop'},
-        {id: 7, title: 'Релакс'},
-        {id: 9, title: 'Джаз'},
-        {id: 10, title: 'Кантри'},
-        {id: 11, title: 'Метал'},
-        {id: 12, title: 'Аниме'},
-        {id: 13, title: 'Классика'},
-        {id: 14, title: 'Фолк'},
-        {id: 15, title: 'Соул'},
-        {id: 15, title: 'Панк'},
-        {id: 15, title: 'Блюз'},
-        {id: 15, title: 'Афро'},
-        {id: 15, title: 'Netflix'},
-        {id: 15, title: 'Караоке'},
+        {id: 1, title: 'Хип-хоп', image: require('@/assets/genres/хип-хоп.png')},
+        {id: 2, title: 'Поп', image: require('@/assets/genres/поп.png')},
+        {id: 3, title: 'Рок', image: require('@/assets/genres/рок.png')},
+        {id: 5, title: 'R&B', image: require('@/assets/genres/R&B.png')},
+        {id: 6, title: 'K-Pop', image: require('@/assets/genres/к-поп.png')},
+        {id: 7, title: 'Релакс', image: require('@/assets/genres/релакс.png')},
+        {id: 9, title: 'Джаз', image: require('@/assets/genres/джаз.png')},
+        {id: 10, title: 'Кантри', image: require('@/assets/genres/кантри.png')},
+        {id: 11, title: 'Метал', image: require('@/assets/genres/метал.png')},
+        {id: 12, title: 'Аниме', image: require('@/assets/genres/аниме.png')},
+        {id: 13, title: 'Классика', image: require('@/assets/genres/классика.png')},
+        {id: 14, title: 'Фолк', image: require('@/assets/genres/фолк.png')},
+        {id: 15, title: 'Соул', image: require('@/assets/genres/Соул.png')},
+        {id: 16, title: 'Панк', image: require('@/assets/genres/панк.png')},
+        {id: 17, title: 'Блюз', image: require('@/assets/genres/блюз.png')},
+        {id: 18, title: 'Афро', image: require('@/assets/genres/афро.png')},
+        {id: 20, title: 'Караоке', image: require('@/assets/genres/караоке.png')}
       ],
     }
   },
@@ -94,6 +90,17 @@ export default {
   margin-bottom: 20px;
 }
 
+.genre__image {
+  display: block;
+  width: 90%;
+  height: auto;
+
+  top: 20px;
+
+
+  border-radius: 10px;
+}
+
 .genres__content {
   display: flex;
   flex-direction: row;
@@ -113,6 +120,8 @@ export default {
 
   background-color: #DFB751;
   text-decoration: none;
+
+
 }
 
 .genre__title {
