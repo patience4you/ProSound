@@ -1,8 +1,6 @@
 <template>
   <div class="aside-library">
-
     <div>
-
       <div class="aside-library__title">
         <a href="/genres" class="social-icons"></a>
         <svg xmlns="http://www.w3.org/2000/svg" fill="#a1a1a1" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="40" height="40">
@@ -10,34 +8,40 @@
         </svg>
         <div id="title">Моя библиотека</div>
       </div>
-
-      <div class="aside-library search-bar__actions">
-
+      <div v-if="userData !== null" class="aside-library search-bar__actions">
         <div class="aside-library__search">
           <input type="text"  placeholder="Поиск...">
         </div>
-
         <button
             class="aside-library__add-playlist"
-            @click="showDialog"
+            @click.prevent="showDialog"
             title="Создать плейлист"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="#a1a1a1" id="Outline" width="25" height="25"><path d="M23,11H13V1a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1V11H1a1,1,0,0,0-1,1H0a1,1,0,0,0,1,1H11V23a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V13H23a1,1,0,0,0,1-1h0A1,1,0,0,0,23,11Z"/></svg>
         </button>
-
       </div>
-
-      <playlist-item v-bind:playlists="playlists"/>
-      <my-dialog v-model:show="dialogVisible">
-        <playlist-form
-          :playlist-counter="playlistCounter"
-          @create="createPlaylist"
-
-        />
-
-      </my-dialog>
+      <div v-if="userData !== null">
+        <playlist-item v-bind:playlists="playlists"/>
+        <my-dialog v-model:show="dialogVisible">
+          <playlist-form
+              :playlist-counter="playlistCounter"
+              @create="createPlaylist"
+          />
+        </my-dialog>
+      </div>
+      <div v-else>
+        <div class="logout-container">
+          <div>
+            <div class="logout-container__text">
+              Не видишь плейлистов?
+            </div>
+            <div class="logout-container__text">
+              Войди в свой аккаунт.
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
 
 </template>
@@ -59,19 +63,16 @@
     },
 
     props: {
-      loggedIn: {
-        type: Boolean,
-        required: true
+      userData: {
+        type: Object,
+        default: null
       },
-      loggedOut: {
-        type: Boolean,
-        required: true
-      }
     },
 
     data() {
       return {
         dialogVisible: false,
+
         playlists: [
           {id: 1, title: 'overdose', author: 'patience', image: require('@/assets/playlist.jpg')},
           {id: 2, title: 'dreams', author: 'patience', image: require('@/assets/playlist.jpg')},
@@ -83,6 +84,10 @@
     computed: {
       playlistCounter() {
         return (this.playlists.length + 1);
+      },
+
+      isLoggedIn() {
+        return this.userData !== null;
       }
     },
 
@@ -95,6 +100,10 @@
         this.playlists.push(playlist)
         this.dialogVisible = false
         this.playlistCounter++;
+      },
+
+      updateLoggedState(userData) {
+        this.userData = userData
       },
     }
   }
@@ -110,7 +119,7 @@
     background-color: #353538;
     border-radius: 10px;
 
-    padding: 0 30px 0 0;
+    padding: 0 0 0 0;
 
     overflow-y: auto;
     scroll-behavior: smooth;
@@ -130,11 +139,11 @@
     flex-direction: row;
     align-items: center;
     margin-left: 40px;
-    margin-top: 18px;
+    margin-top: 25px;
   }
 
   .aside-library__title #title{
-    margin-left: 30px;
+    margin-left: 25px;
   }
 
   .aside-library__add-playlist {
@@ -202,6 +211,19 @@
     color: #A1A1A1;
   }
 
+  .logout-container {
+    margin: 40px 40px;
+    padding: 15px;
 
+    background-color: #48484b;
+    border-radius: 10px;
+  }
+
+  .logout-container__text {
+    font-size: 17px;
+    color: #A1A1A1;
+    text-align: center;
+    line-height: 35px;
+  }
 
 </style>

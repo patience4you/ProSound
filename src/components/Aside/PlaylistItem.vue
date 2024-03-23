@@ -62,6 +62,7 @@ export default {
   }
 
   .aside-library__playlists .playlist {
+    width: 80%;
     display: flex;
     flex-direction: row;
     padding: 10px;

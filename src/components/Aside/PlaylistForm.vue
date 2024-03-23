@@ -22,7 +22,7 @@
     <button
         @click.prevent="createPlaylist"
         :disabled="playlist.title === ''"
-        :class="{ 'disabled': playlist.title === '' }"
+        :class="{  'disabled': playlist.title === '' }"
     >
       Создать
     </button>
@@ -144,8 +144,16 @@ import AsidePlaylist from "@/components/Aside/AsidePlaylists.vue";
     transition: background-color 0.3s;
   }
 
+  .playlist-form button:hover {
+    background-color: #ffd979;
+  }
+
   .playlist-form button.disabled {
     opacity: 0.3;
     cursor: not-allowed; /* Меняем курсор */
+  }
+
+  .playlist-form button.disabled:hover {
+    background-color:#DFB751
   }
 </style>

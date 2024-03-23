@@ -1,33 +1,26 @@
 <template>
   <header class="header">
-
     <div class="logo">
       <a href=" ">
         <img src="../../assets/logo.svg" alt="">
       </a>
     </div>
-
     <div class="search-bar">
       <input type="text"  placeholder="Что слушаем?">
     </div>
-
     <div v-if="loggedOut" class="user-actions">
-
       <div class="user-actions__premium">
         <a href=" ">Премиум</a>
       </div>
-
       <div>
         <svg width="3" height="50" viewbox="0 0 3 50"
              fill="#A1A1A1" xmlns="http://www.w3.org/2000/svg">
           <rect width="3" height="50" />
         </svg>
       </div>
-
       <div class="user-actions__registration">
         <a href=" ">Зарегистрироваться</a>
       </div>
-
       <button
           class="user-actions__login-button"
           href="/login.html"
@@ -36,7 +29,6 @@
         Войти
       </button>
     </div>
-
     <div v-if="loggedIn" class="logged-in__actions">
       <div>Привет, <strong :style="{color: 'white'}">{{userData.email}}</strong> </div>
       <button
@@ -46,13 +38,11 @@
         Выйти
       </button>
     </div>
-
     <my-dialog v-model:show="loginDialogVisible">
       <login-form
           @login="loginAccount"
       />
     </my-dialog>
-
   </header>
 </template>
 
@@ -81,11 +71,11 @@ export default {
       this.loginDialogVisible = true;
     },
 
-    logoutAccount(logout) {
+    logoutAccount() {
       this.loggedOut = true;
       this.loggedIn = false;
       this.userData = null;
-      this.$emit('loggedOutChanged', true);
+      this.$emit('userDataChanged', this.userData);
     },
 
     loginAccount(login) {
@@ -93,7 +83,7 @@ export default {
       this.loggedIn = true;
       this.loggedOut = false;
       this.userData = login;
-      this.$emit('loggedInChanged', true);
+      this.$emit('userDataChanged', this.userData);
     },
   }
 
@@ -168,7 +158,7 @@ export default {
   }
 
   .user-actions__login-button {
-    width: 190px;
+    width: 150px;
     height: 55px;
 
     font-weight: 700;
@@ -193,5 +183,4 @@ export default {
   .user-actions__login-button:hover {
     background-color: #ffd979;
   }
-
 </style>

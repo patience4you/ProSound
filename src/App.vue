@@ -1,10 +1,20 @@
 <template>
   <div class="container">
-    <my-header/>
-    <aside-nav @contentChange="updateContent"/>
-    <aside-playlists :loggedIn="loggedIn" :loggedOut="loggedOut" @update-logged-state="updateLoggedState"/>
-    <my-content :currentContent="currentContent"/>
-    <my-footer/>
+    <my-header
+        @userDataChanged="updateUserData"
+    />
+    <aside-nav
+        @contentChange="updateContent"
+        :current-content="currentContent"
+    />
+    <aside-playlists
+        :userData="userData"
+    />
+    <my-content
+        :currentContent="currentContent"
+    />
+    <my-footer
+    />
   </div>
 </template>
 
@@ -28,11 +38,10 @@ export default {
     MyFooter
   },
 
-
   data() {
     return {
-
-      currentContent: 'genres'
+      currentContent: 'genres',
+      userData: null
     }
   },
 
@@ -40,11 +49,9 @@ export default {
     updateContent(content) {
       this.currentContent = content;
     },
-
-    updateLoggedState(loggedIn, loggedOut) {
-      this.loggedIn = loggedIn;
-      this.loggedOut = loggedOut;
-    },
+    updateUserData(userData) {
+      this.userData = userData;
+    }
   }
 }
 </script>
