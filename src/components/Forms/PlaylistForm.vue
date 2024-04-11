@@ -6,35 +6,39 @@
     >
       Введите название плейлиста
     </div>
-    <input
+    <my-input
       v-model="playlist.title"
       class="input"
       :class="{'empty': playlist.title === ''}"
       type="text"
       placeholder="Название плейлиста"
-    >
-    <input
+    />
+    <my-input
         v-model="playlist.author"
         class="input"
         type="text"
         placeholder="Автор"
-    >
-    <button
+    />
+    <my-button
         @click.prevent="createPlaylist"
         :disabled="playlist.title === ''"
         :class="{  'disabled': playlist.title === '' }"
     >
       Создать
-    </button>
+    </my-button>
   </form>
 </template>
 
 <script>
 import AsidePlaylist from "@/components/Aside/AsidePlaylists.vue";
+import MyInput from "@/components/UI/MyInput.vue";
+import MyButton from "@/components/UI/MyButton.vue";
 
   export default {
     components: {
       AsidePlaylist,
+      MyInput,
+      MyButton
     },
 
     props: {

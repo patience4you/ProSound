@@ -9,39 +9,45 @@
     </div>
     <div class="email-content">
       <div class="email title">Электронная почта или логин</div>
-      <input
+      <my-input
           v-model="login.email"
-          class="email input"
+          class="input"
           :class="{'empty': (login.email === '' && buttonClicked)}"
           type="email"
-          placeholder="Электронная почта или логин"
-      >
+          placeholder="name@domain.com"
+      />
     </div>
     <div class="password-content">
       <div class="password title">Пароль</div>
-      <input
+      <my-input
           v-model="login.password"
-          class="password input"
+          class="input"
           :class="{'empty': (login.password === '' && buttonClicked)}"
           type="password"
-          placeholder="Пароль"
-      >
+          placeholder="password123"
+      />
     </div>
-    <button
+    <my-button
         @click="loginAccount"
     >
       Войти
-    </button>
-    <div class="sign-link">У вас еще нет аккаунта? <a href="">Зарегистрироваться</a></div>
+    </my-button>
+    <div class="sign-link">У вас еще нет аккаунта?
+      <router-link to="/sign-up">Зарегистрироваться</router-link>
+    </div>
   </form>
 </template>
 
 <script>
-  import MyHeader from "@/components/Header/MyHeader.vue";
+  import MyHeader from "@/components/Base/MyHeader.vue";
+  import MyInput from "@/components/UI/MyInput.vue";
+  import MyButton from "@/components/UI/MyButton.vue";
 
   export default {
     components: {
+      MyButton,
       MyHeader,
+      MyInput
     },
 
     data() {
@@ -59,10 +65,10 @@
 
         this.buttonClicked = true;
 
-        /*if (this.login.email === '' || this.login.password === '') {
+        if (this.login.email === '' || this.login.password === '') {
           // Выходим из метода
           return;
-        }*/
+        }
 
         if (!this.isValidEmail(this.login.email)) {
           // Если электронная почта некорректна, выводим сообщение об ошибке
@@ -144,14 +150,6 @@ a:hover {
   font-weight: 800;
 }
 
-.input.empty {
-  outline: 2px solid #df5151;
-}
-
-.input.empty:focus {
-  outline: 2px solid #df5151;
-}
-
 .input__block {
   font-size: 15px;
   color: white;
@@ -162,31 +160,6 @@ a:hover {
   width: 300px;
   padding: 5px 10px;
   border-radius: 5px;
-}
-
-.login-form input {
-  font-weight: 600;
-  color: #A1A1A1;
-
-  width: 300px;
-  padding: 10px 15px;
-  font-size: 20px;
-
-  background-color: #48484B;
-  border: 0;
-  border-radius: 10px;
-}
-
-.login-form input:hover {
-  outline: 1px solid #DFB751;
-}
-
-.login-form input:focus {
-  outline: 2px solid #DFB751;
-}
-
-.login-form input::placeholder  {
-  color: #868686;
 }
 
 .login-form button {

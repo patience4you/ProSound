@@ -10,7 +10,7 @@
     </div>
     <div v-if="loggedOut" class="user-actions">
       <div class="user-actions__premium">
-        <a href=" ">Премиум</a>
+        <router-link to="/premium">Премиум</router-link>
       </div>
       <div>
         <svg width="3" height="50" viewbox="0 0 3 50"
@@ -19,24 +19,20 @@
         </svg>
       </div>
       <div class="user-actions__registration">
-        <a href=" ">Зарегистрироваться</a>
+        <router-link to="/sign-up">Зарегистрироваться</router-link>
       </div>
-      <button
-          class="user-actions__login-button"
+      <my-button
           href="/login.html"
           @click.prevent="showDialog"
       >
         Войти
-      </button>
+      </my-button>
     </div>
     <div v-if="loggedIn" class="logged-in__actions">
       <div>Привет, <strong :style="{color: 'white'}">{{userData.email}}</strong> </div>
-      <button
-          class="user-actions__login-button"
-          @click.prevent="logoutAccount"
-      >
+      <my-button @click.prevent="logoutAccount">
         Выйти
-      </button>
+      </my-button>
     </div>
     <my-dialog v-model:show="loginDialogVisible">
       <login-form
@@ -49,12 +45,14 @@
 <script>
 import MyDialog from "@/components/UI/MyDialog.vue";
 import LoginForm from "@/components/Header/LoginForm.vue";
+import MyButton from "@/components/UI/MyButton.vue";
 
 export default {
 
   components: {
     LoginForm,
     MyDialog,
+    MyButton
   },
 
   data() {
@@ -89,24 +87,22 @@ export default {
 
 }
 </script>
-
-
 <style scoped>
 
-.header {
-  grid-area: header;
+  .header {
+    grid-area: header;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-  padding: 15px 40px 15px 40px;
-  margin-top: 10px;
+    padding: 15px 40px 15px 40px;
+    margin-top: 10px;
 
-  background-color: #353538;
+    background-color: #353538;
 
-  border-radius: 10px;
-}
+    border-radius: 10px;
+  }
 
   .search-bar {
     width: 30%;
@@ -157,30 +153,11 @@ export default {
     color: #fff;
   }
 
-  .user-actions__login-button {
-    width: 150px;
-    height: 55px;
-
-    font-weight: 700;
-
-    background-color: #DFB751;
-    color: #131313;
-    border: none;
-    border-radius: 45px;
-    cursor: pointer;
-
-    transition: background-color 0.3s;
-  }
-
   .logged-in__actions {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 30px
-  }
-
-  .user-actions__login-button:hover {
-    background-color: #ffd979;
   }
 </style>
