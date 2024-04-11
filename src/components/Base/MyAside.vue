@@ -1,8 +1,10 @@
 <script>
-import AsideNav from "@/components/Aside/AsideNav.vue";
+import AsideNav from "@/components/Aside/Nav/AsideNav.vue";
 import AsidePlaylists from "@/components/Aside/AsidePlaylists.vue";
+import MyGenres from "@/components/Aside/Nav/MyGenres.vue";
   export default {
     components: {
+      MyGenres,
       AsideNav,
       AsidePlaylists
     },

@@ -2,7 +2,7 @@
   <header class="header">
     <div class="logo">
       <a href=" ">
-        <img src="../../assets/logo.svg" alt="">
+        <img src="@/assets/logo.svg" alt="">
       </a>
     </div>
     <div class="search-bar">
@@ -44,7 +44,7 @@
 
 <script>
 import MyDialog from "@/components/UI/MyDialog.vue";
-import LoginForm from "@/components/Header/LoginForm.vue";
+import LoginForm from "@/components/Forms/LoginForm.vue";
 import MyButton from "@/components/UI/MyButton.vue";
 
 export default {

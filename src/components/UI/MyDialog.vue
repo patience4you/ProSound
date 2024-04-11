@@ -14,9 +14,7 @@
         type: Boolean,
         default: false
       }
-
     },
-
     methods: {
       closeDialog () {
         this.$emit('update:show', false)
@@ -40,11 +38,8 @@
   }
 
   .dialog__content {
-
     margin: auto;
     background-color: #262626;
-    //border: solid 2px rgba(255, 255, 255, 0.35);
-
     border-radius: 15px;
   }
 </style>

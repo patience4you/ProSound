@@ -1,43 +1,44 @@
 <template>
   <div class="aside-library">
-    <div>
-      <div class="aside-library__title">
-        <a href="/genres" class="social-icons"></a>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="#a1a1a1" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="40" height="40">
-          <path d="m23.927,20.125l-3.971-17.729c-.359-1.615-1.969-2.634-3.581-2.275l-.976.218c-.466.104-.882.312-1.23.594-.547-.573-1.317-.931-2.17-.931h-6c-1.654,0-3,1.346-3,3v2c0,.552.447,1,1,1s1-.448,1-1v-2c0-.551.448-1,1-1h2v6c0,.552.447,1,1,1s1-.448,1-1v-1h3v10h-3v-1c0-.552-.447-1-1-1s-1,.448-1,1v6h-2c-.552,0-1-.449-1-1v-2c0-.552-.447-1-1-1s-1,.448-1,1v2c0,1.654,1.346,3,3,3h6c1.654,0,3-1.346,3-3v-8.706l2.097,9.364c.313,1.393,1.556,2.343,2.928,2.343.215,0,.434-.023.652-.072l.976-.218c.783-.175,1.451-.644,1.881-1.321.43-.678.569-1.482.394-2.265Zm-7.974-12.727l2.928-.655,2.267,10.122-2.929.654-2.267-10.121Zm-.118-5.108s1.122-.242,1.195-.242c.188,0,.372.053.534.156.226.144.382.366.44.627l.439,1.96-2.928.655-.439-1.962c-.119-.539.221-1.074.759-1.194Zm-5.835,2.71v-3h2c.552,0,1,.449,1,1v2h-3Zm2,17h-2v-3h3v2c0,.551-.448,1-1,1Zm9.844-.683c-.143.226-.365.382-.627.44l-.976.218c-.537.117-1.072-.219-1.193-.756l-.392-1.749,2.929-.653.391,1.745c.059.261.012.53-.132.755ZM3,13H1c-.553,0-1-.448-1-1s.447-1,1-1h2v-2c0-.552.447-1,1-1s1,.448,1,1v2h2c.553,0,1,.448,1,1s-.447,1-1,1h-2v2c0,.552-.447,1-1,1s-1-.448-1-1v-2Z"/>
-        </svg>
-        <div id="title">Моя библиотека</div>
-      </div>
-      <div v-if="userData !== null" class="aside-library search-bar__actions">
-        <div class="aside-library__search">
-          <input type="text"  placeholder="Поиск...">
-        </div>
-        <button
-            class="aside-library__add-playlist"
-            @click.prevent="showDialog"
-            title="Создать плейлист"
+    <div class="aside-library__title">
+      <a href="/genres" class="social-icons"></a>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="#a1a1a1" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="40" height="40">
+        <path d="m23.927,20.125l-3.971-17.729c-.359-1.615-1.969-2.634-3.581-2.275l-.976.218c-.466.104-.882.312-1.23.594-.547-.573-1.317-.931-2.17-.931h-6c-1.654,0-3,1.346-3,3v2c0,.552.447,1,1,1s1-.448,1-1v-2c0-.551.448-1,1-1h2v6c0,.552.447,1,1,1s1-.448,1-1v-1h3v10h-3v-1c0-.552-.447-1-1-1s-1,.448-1,1v6h-2c-.552,0-1-.449-1-1v-2c0-.552-.447-1-1-1s-1,.448-1,1v2c0,1.654,1.346,3,3,3h6c1.654,0,3-1.346,3-3v-8.706l2.097,9.364c.313,1.393,1.556,2.343,2.928,2.343.215,0,.434-.023.652-.072l.976-.218c.783-.175,1.451-.644,1.881-1.321.43-.678.569-1.482.394-2.265Zm-7.974-12.727l2.928-.655,2.267,10.122-2.929.654-2.267-10.121Zm-.118-5.108s1.122-.242,1.195-.242c.188,0,.372.053.534.156.226.144.382.366.44.627l.439,1.96-2.928.655-.439-1.962c-.119-.539.221-1.074.759-1.194Zm-5.835,2.71v-3h2c.552,0,1,.449,1,1v2h-3Zm2,17h-2v-3h3v2c0,.551-.448,1-1,1Zm9.844-.683c-.143.226-.365.382-.627.44l-.976.218c-.537.117-1.072-.219-1.193-.756l-.392-1.749,2.929-.653.391,1.745c.059.261.012.53-.132.755ZM3,13H1c-.553,0-1-.448-1-1s.447-1,1-1h2v-2c0-.552.447-1,1-1s1,.448,1,1v2h2c.553,0,1,.448,1,1s-.447,1-1,1h-2v2c0,.552-.447,1-1,1s-1-.448-1-1v-2Z"/>
+      </svg>
+      <div id="title">Моя библиотека</div>
+    </div>
+    <div v-if="userData !== null" class="aside-library search-bar__actions">
+      <div class="aside-library__search">
+        <input
+            type="text"
+            placeholder="Поиск..."
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="#a1a1a1" id="Outline" width="25" height="25"><path d="M23,11H13V1a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1V11H1a1,1,0,0,0-1,1H0a1,1,0,0,0,1,1H11V23a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V13H23a1,1,0,0,0,1-1h0A1,1,0,0,0,23,11Z"/></svg>
-        </button>
       </div>
-      <div v-if="userData !== null">
-        <playlist-item v-bind:playlists="playlists"/>
-        <my-dialog v-model:show="dialogVisible">
-          <playlist-form
-              :playlist-counter="playlistCounter"
-              @create="createPlaylist"
-          />
-        </my-dialog>
-      </div>
-      <div v-else>
-        <div class="logout-container">
-          <div>
-            <div class="logout-container__text">
-              Не видишь плейлистов?
-            </div>
-            <div class="logout-container__text">
-              Войди в свой аккаунт.
-            </div>
+      <button
+          class="aside-library__add-playlist"
+          @click.prevent="showDialog"
+          title="Создать плейлист"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="#a1a1a1" id="Outline" width="25" height="25"><path d="M23,11H13V1a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1V11H1a1,1,0,0,0-1,1H0a1,1,0,0,0,1,1H11V23a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V13H23a1,1,0,0,0,1-1h0A1,1,0,0,0,23,11Z"/></svg>
+      </button>
+    </div>
+    <div v-if="userData !== null">
+      <playlist-item v-bind:playlists="playlists"/>
+      <my-dialog v-model:show="dialogVisible">
+        <playlist-form
+            :playlist-counter="playlistCounter"
+            @create="createPlaylist"
+        />
+      </my-dialog>
+    </div>
+    <div v-else>
+      <div class="logout-container">
+        <div>
+          <div class="logout-container__text">
+            Не видишь плейлистов?
+          </div>
+          <div class="logout-container__text">
+            Войди в свой аккаунт.
           </div>
         </div>
       </div>
@@ -49,9 +50,10 @@
 <script>
   import PlaylistItem from "@/components/Aside/PlaylistItem.vue";
   import MyDialog from "@/components/UI/MyDialog.vue";
-  import PlaylistForm from "@/components/Aside/PlaylistForm.vue";
-  import LoginForm from "@/components/Header/LoginForm.vue";
-  import MyHeader from "@/components/Header/MyHeader.vue";
+  import PlaylistForm from "@/components/Forms/PlaylistForm.vue";
+  import LoginForm from "@/components/Forms/LoginForm.vue";
+  import MyHeader from "@/components/Base/MyHeader.vue";
+  import MyInput from "@/components/UI/MyInput.vue";
 
   export default {
     components: {
@@ -60,6 +62,7 @@
       PlaylistItem,
       MyDialog,
       MyHeader,
+      MyInput,
     },
 
     props: {
